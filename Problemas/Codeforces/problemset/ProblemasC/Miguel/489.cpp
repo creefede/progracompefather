@@ -13,6 +13,7 @@
 #define all(v) v.begin(),v.end()
 #define tc int t; cin >> t; while(t--)
 #define fa(x) bool x=false
+#define dv(v) forn(i,sz(v)) cout << v[i] << " \n"[i == sz(v)-1]
 #define d(x) cout << (x) << el
 #define bug(x) cout << (#x) << ": " << (x) << el
 
@@ -38,13 +39,22 @@ const ld pi = acos(-1);
 int main(){
   ios_base::sync_with_stdio(false);
   cin.tie(NULL); cout.tie(NULL);
-  int m;cin>>m;
-  string s;cin>>s;
-  if(s=="0")cout<<-1<<' '<<-1;
+  int m,q;cin>>m>>q;
+  if(q==0)cout<<-1<<' '<<-1;
   else{
-    int t=s.size();
-    int q=stoi(s);
-    if(t>m)cout<<-1<<' '<<-1;
-    else if(t==m)cout<<-1<<' '<<-1;
+      string ma="",mi="";
+      int contma=0;
+      forn(i,m){
+        if(contma+m-i+9<=q){contma+=9;ma+='9';}
+        else{int z=q-(contma+m-i)+1;contma+=z;ma+=char('0'+z);}
+      }
+      if(contma!=q){cout<<-1<<' '<<-1;}
+      else{
+        forn(i,m){
+          mi+=ma[m-i-1];
+        }
+        cout<<mi<<" ";
+        d(ma);
+      }
   }
 }
